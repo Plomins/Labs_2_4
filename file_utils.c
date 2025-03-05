@@ -1,7 +1,6 @@
 #include "file_utils.h"
 
-// Write and read file
-// mode: 1 for writing, 0 for reading
+
 void file_rw(const char* filename, int mode) {
     FILE* file = fopen(filename, mode ? "w" : "r");
     if (!file) {
@@ -9,13 +8,13 @@ void file_rw(const char* filename, int mode) {
         exit(1);
     }
 
-    if (mode) {  // Writing
+    if (mode) {  
         printf("Enter text: ");
         char buffer[MAX_SIZE];
         fgets(buffer, MAX_SIZE, stdin);
         fprintf(file, "%s", buffer);
     }
-    else {  // Reading
+    else {  
         printf("File content:\n");
         char ch;
         while ((ch = fgetc(file)) != EOF)
@@ -26,7 +25,7 @@ void file_rw(const char* filename, int mode) {
     fclose(file);
 }
 
-// Count occurrences of a character in the file
+
 void count_char(const char* filename, char target) {
     FILE* file = fopen(filename, "r");
     if (!file) {
@@ -44,7 +43,7 @@ void count_char(const char* filename, char target) {
     fclose(file);
 }
 
-// Reverse a substring in the file given start and end indices
+
 void reverse_substr(const char* filename, int start, int end) {
     FILE* file = fopen(filename, "r+");
     if (!file) {
@@ -75,7 +74,7 @@ void reverse_substr(const char* filename, int start, int end) {
     fclose(file);
 }
 
-// Main task with menu
+
 void maintask(const char* filename) {
     int choice;
     char target;
@@ -90,8 +89,7 @@ void maintask(const char* filename) {
         printf("5. Exit\n");
         printf("Choice: ");
         scanf("%d", &choice);
-        getchar();  // Consume newline
-
+        getchar();  
         switch (choice) {
         case 1:
             file_rw(filename, 1);
